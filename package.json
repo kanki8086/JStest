@@ -1,0 +1,15 @@
+{
+  "name": "travisTest",
+  "version": "0.0.1",
+  "description": "Travisのサンプルテスト",
+  "scripts": {
+    "test": "vows js/hello.js --spec"
+  },
+  "repository": "https://github.com/kanki8086/JStest",
+  "author": "kanki",
+  "license": "MIT",
+  "dependencies": {
+    "vows":"*",
+    "assert":"*"
+  }
+}
