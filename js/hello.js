@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+    
 var vows = require('vows'),
     assert = require('assert');
 
