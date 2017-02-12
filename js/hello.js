@@ -23,5 +23,13 @@ vows.describe('Division by Zero').addBatch({
                 assert.notEqual (topic, topic);
             }
         }
+    },
+    'when hoge': {
+        topic: function () {
+            return 42 / 0;
+        },
+        'we get Infinity': function (topic) {
+            assert.equal (topic, 0);
+        }
     }
 }).export(module);
