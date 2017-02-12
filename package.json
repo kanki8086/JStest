@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "vows":"*",
-    "assert":"*"
+    "assert":"*",
+    "coveralls": "~2.5.0"
   }
 }
