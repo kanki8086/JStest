@@ -1,5 +1,5 @@
-require 'coveralls'
-Coveralls.wear!
+var Coveralls = require('coveralls');
+Coveralls.wear();
     
 var vows = require('vows'),
     assert = require('assert');
