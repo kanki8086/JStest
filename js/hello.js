@@ -29,7 +29,7 @@ vows.describe('Division by Zero').addBatch({
             return 42 / 0;
         },
         'we get Infinity': function (topic) {
-            assert.equal (topic, 0);
+            assert.notEqual (topic, 0);
         }
     }
 }).export(module);
