@@ -1,0 +1,16 @@
+CSP 信頼済みサイトにURLを追加。
+https://35.194.112.103
+
+---
+({
+	btnClick : function(component, event, helper) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+				window.alert(xmlHttp.responseText);
+            }
+        }
+        xmlHttp.open("GET", 'https://35.194.112.103/', true);
+        xmlHttp.send(null);
+	}
+})
