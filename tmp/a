@@ -1,0 +1,23 @@
+menu_page.js
+var specUtil = require('../util/spec_util_page');
+
+
+function importFlow() {
+    browser.clickWithWait('//a[@id="btn-sidemenu"]');
+    browser.moveToObject('//a[@id="menu-item-import"]/span[@class="menu-label"]');
+    browser.clickWithWait('//a[@id="menu-item-import-clipboard"]/span[@class="menu-label"]');
+}
+
+module.exports = {
+    importFlow: importFlow,
+};
+
+
+
+
+
+
+    it('import flow', function () {
+        menu.importFlow();
+        specUtil.pause(3000);
+    });
