@@ -1,0 +1,42 @@
+■edit node
+#editor-stack
+☆editor-tray ui-draggable
+☆editor-tray-body-wrapper
+☆editor-tray-body red-ui-stack
+☆palette-category palette-category-expanded
+☆editor-tray-content
+☆dialog-form form-horizontal
+☆form-row
+☆editor-button
+①red-ui-search-result-node
+
+■tile
+☆red-ui-icon-picker
+☆red-ui-icon-list
+☆red-ui-icon-list-icon
+①red-ui-search-result-node
+
+■search
+⑧red-ui-search
+⑦red-ui-search-results-container
+⑥red-ui-editableList
+⑤red-ui-editableList-border red-ui-editableList-container
+④#search-result-list
+☆red-ui-editableList-list
+③red-ui-editableList-item-content
+②red-ui-search-result
+①red-ui-search-result-node
+
+■ctrl
+☆#red-ui-type-search
+⑧red-ui-search
+☆red-ui-type-search
+⑦red-ui-search-results-container
+⑥red-ui-editableList
+⑤red-ui-editableList-border red-ui-editableList-container
+④#search-result-list
+☆search-result-list
+③red-ui-editableList-item-content
+②red-ui-search-result
+①red-ui-search-result-node
+
