@@ -1,23 +1,69 @@
-menu_page.js
-var specUtil = require('../util/spec_util_page');
+        it('serve JSON content', function () {
+            var httpinNode = workspace.addNode("httpin");
+            var templateNode = workspace.addNode("template");
+            var changeNode = workspace.addNode("change");
+            var httpResponseNode = workspace.addNode("httpResponse");
+
+            httpinNode.edit();
+            httpinNode.setMethod("get");
+            httpinNode.setUrl("/hello-json");
+            httpinNode.clickOk();
+
+            templateNode.edit();
+            templateNode.setSyntax("mustache");
+            templateNode.setFormat("handlebars");
+            templateNode.setTemplate('{ "Hello": "World" }');
+            templateNode.clickOk();
+
+            changeNode.edit();
+            changeNode.ruleSet("headers", "msg", "{}", "json", "1");
+            changeNode.addRule();
+            changeNode.ruleSet("headers.content-type", "msg", "application/json", "str", "2");
+            changeNode.clickOk();
+
+            httpinNode.connect(templateNode);
+            templateNode.connect(changeNode);
+            changeNode.connect(httpResponseNode);
+
+            // The code for confirmation starts from here.
+            var injectNode = workspace.addNode("inject", 0, 200);
+            var httpRequestNode = workspace.addNode("httpRequest");
+            var changeNodeCheck = workspace.addNode("change");
+            var debugNode = workspace.addNode("debug");
+
+            httpRequestNode.edit();
+            httpRequestNode.setMethod("GET");
+            httpRequestNode.setUrl(helper.url() + httpNodeRoot + '/hello-json');
+            httpRequestNode.clickOk();
+
+            changeNodeCheck.edit();
+            changeNodeCheck.ruleSet("payload", "msg", "headers.content-type", "msg", "1");
+            changeNodeCheck.clickOk();
+
+            injectNode.connect(httpRequestNode);
+            httpRequestNode.connect(changeNodeCheck);
+            changeNodeCheck.connect(debugNode);
+            // The code for confirmation ends here.
+
+            workspace.deploy();
+            debugTab.open();
+            debugTab.clearMessage();
+            injectNode.clickLeftButton();
+            var messages = debugTab.getMessage();
+            messages.indexOf('application/json').should.not.eql(-1);
+        });
 
 
-function importFlow() {
-    browser.clickWithWait('//a[@id="btn-sidemenu"]');
-    browser.moveToObject('//a[@id="menu-item-import"]/span[@class="menu-label"]');
-    browser.clickWithWait('//a[@id="menu-item-import-clipboard"]/span[@class="menu-label"]');
-}
+80-function_page.js
+50->200
 
-module.exports = {
-    importFlow: importFlow,
-};
+80-template_page.js
+browser.pause(200);
 
+util_page.js
+     browser.addCommand("clickWithWait", function(selector) {
++        browser.pause(50);
+         browser.waitForVisible(selector);
 
-
-
-
-
-    it('import flow', function () {
-        menu.importFlow();
-        specUtil.pause(3000);
-    });
+wdio.conf.js
+maxInstances: 1
