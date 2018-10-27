@@ -55,10 +55,10 @@
 
 
 80-function_page.js
-50->200
+50->300
 
 80-template_page.js
-browser.pause(200);
+browser.pause(300);
 
 util_page.js
      browser.addCommand("clickWithWait", function(selector) {
